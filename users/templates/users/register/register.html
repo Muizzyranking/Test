@@ -1,0 +1,51 @@
+{% extends "users/base.html" %}
+{% block title %}
+  Registeration
+{% endblock title %}
+{% block content %}
+  <section class="h-screen mt-8 overflow-hidden  sm:grid sm:grid-cols-2">
+    <div class="p-8 md:p-12 lg:px-16 lg:py-24">
+      <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+        <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h2>
+        <p class="hidden text-gray-500 md:mt-4 md:block">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam
+          sed. Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
+          quisque ut interdum tincidunt duis.
+        </p>
+        <div class="mt-4 md:mt-8">
+          <a class="group relative inline-flex items-center overflow-hidden rounded bg-teal-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-teal-500"
+             href=" {% url 'register_applicant' %} ">
+            <span class="absolute -end-full transition-all group-hover:end-4">
+              <svg class="size-5 rtl:rotate-180"
+                   xmlns="http://www.w3.org/2000/svg"
+                   fill="none"
+                   viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+            <span class="text-sm font-medium transition-all group-hover:me-4">Register as an Applicant</span>
+          </a>
+        </div>
+        <div class="mt-4 md:mt-8">
+          <a class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-teal-600 focus:outline-none focus:ring active:text-teal-500"
+             href=" {% url 'register_company' %} ">
+            <span class="absolute -end-full transition-all group-hover:end-4">
+              <svg class="size-5 rtl:rotate-180"
+                   xmlns="http://www.w3.org/2000/svg"
+                   fill="none"
+                   viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+            <span class="text-sm font-medium transition-all group-hover:me-4">Register as a company</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <img alt=""
+         src="https://images.unsplash.com/photo-1464582883107-8adf2dca8a9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+         class="h-56 w-full object-cover sm:h-full" />
+  </section>
+{% endblock content %}

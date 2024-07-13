@@ -1,0 +1,123 @@
+{% extends "users/base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+  Companies Registeration
+{% endblock title %}
+{% block content %}
+  <section class="bg-white">
+    <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
+      <aside class="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+        <img alt=""
+             src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+             class="absolute inset-0 h-full w-full object-cover" />
+      </aside>
+      <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+        <div class="max-w-xl lg:max-w-3xl">
+          <h1 class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">Welcome to JobTrackr</h1>
+          <p class="mt-4 leading-relaxed text-gray-500">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
+            dolorum aliquam, quibusdam aperiam voluptatum.
+          </p>
+          {% if form.errors %}
+            <div role="alert"
+                 class="mt-2 rounded border-s-4 border-red-500 bg-red-50 p-4"
+                 id="alert-box">
+              <div class="flex items-center gap-2 text-red-800">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     fill="currentColor"
+                     class="h-5 w-5">
+                  <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                </svg>
+                  <strong class="block font-medium">There is something wrong with the form</strong>
+                <button onclick="closeAlert()" class="transition hover:text-red-600">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       fill="none"
+                       viewBox="0 0 24 24"
+                       stroke-width="1.5"
+                       stroke="currentColor"
+                       class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          {% endif %}
+          <form action="{% url 'register_applicant' %}"
+                method="post"
+                class="mt-8 grid grid-cols-6 gap-6">
+            {% csrf_token %}
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">First Name</label>
+              {% render_field form.first_name placeholder="Doe" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.first_name.errors %}<div class="mt-2 text-xs text-red-700">{{ form.first_name.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Last Name</label>
+              {% render_field form.last_name placeholder="Doe" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.last_name.errors %}<div class="mt-2 text-xs text-red-700">{{ form.last_name.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6">
+              <label class="block text-sm font-medium text-gray-700">Email</label>
+              {% render_field form.email placeholder="example@domain.com" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.email.errors %}<div class="mt-2 text-xs text-red-700">{{ form.email.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6">
+              <label class="block text-sm font-medium text-gray-700">Username</label>
+              {% render_field form.username placeholder="Username" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.username.errors %}<div class="mt-2 text-xs text-red-700">{{ form.username.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Address</label>
+              {% render_field form.address placeholder="address" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.address.errors %}<div class="mt-2 text-xs text-red-700">{{ form.address.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">City</label>
+              {% render_field form.city placeholder="Ikeja" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.city.errors %}<div class="mt-2 text-xs text-red-700">{{ form.city.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">country</label>
+              {% render_field form.country placeholder="Lagos" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.country.errors %}<div class="mt-2 text-xs text-red-700">{{ form.country.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Zipcode</label>
+              {% render_field form.zip placeholder="000000" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.zip.errors %}<div class="mt-2 text-xs text-red-700">{{ form.zip.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Password</label>
+              {% render_field form.password1 placeholder="**************" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.password1.errors %}<div class="mt-2 text-xs text-red-700">{{ form.password1.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Password Confirmation</label>
+              {% render_field form.password2 placeholder="**************" class+="p-2 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+              {% if form.password2.errors %}<div class="mt-2 text-xs text-red-700">{{ form.password2.errors }}</div>{% endif %}
+            </div>
+            <div class="col-span-6">
+              <p class="text-sm text-gray-500">
+                By creating an account, you agree to our
+                <a href="#" class="text-gray-700 underline">terms and conditions</a>
+                and
+                <a href="#" class="text-gray-700 underline">privacy policy</a>.
+              </p>
+            </div>
+            <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+              <button type="submit"
+                      class="inline-block shrink-0 rounded-md border border-teal-600 bg-teal-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500">
+                Create an account
+              </button>
+              <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                Already have an account?
+                <a href="{% url 'login' %}" class="text-gray-700 underline">Log in</a>.
+              </p>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </section>
+{% endblock content %}

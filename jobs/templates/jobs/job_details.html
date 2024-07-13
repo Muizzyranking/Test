@@ -1,0 +1,65 @@
+{% extends "users/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}{{ job.title }} - Jobtrackr{% endblock title %}
+
+{% block nav %}
+    {% if user.is_authenticated %}
+        {% include "users/nav/feed-nav.html" %}
+    {% else %}
+        {% include "core/nav.html" %}
+    {% endif %}
+{% endblock nav %}
+
+{% block content %}
+<div class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div class="max-w-3xl mx-auto">
+            <div class="rounded-lg bg-white p-8 shadow-lg border border-gray-100">
+                <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-6">{{ job.title }}</h1>
+                
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="./../../../static/Lofi-Anime-Room-crop.png"
+                         alt="{{ job.company }}"
+                         class="w-16 h-16 rounded-full">
+                    <div>
+                        <a href="{% url 'company' job.company.company_name %}" class="text-xl font-semibold text-teal-600 hover:text-teal-700 transition duration-300">
+                            {{ job.company.company_name }}
+                        </a>
+                        <p class="text-sm text-gray-500">Posted on {{ job.created_at|date:"M d, Y" }}</p>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none mb-8">
+                    <p class="text-gray-700">{{ job.description }}</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">Job Type</h3>
+                        <p class="text-gray-700">{{ job.job_type }}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">Salary</h3>
+                        <p class="text-gray-700">
+                            {% if job.salary %}
+                                {{ job.salary }}
+                            {% else %}
+                                Not Specified
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <a href="{% url 'apply' job.slug %}"
+                   class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition duration-300">
+                    Apply Now
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

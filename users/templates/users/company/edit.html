@@ -1,0 +1,87 @@
+{% extends "users/base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+    Edit Profile
+{% endblock title %}
+{% block content %}
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+            <div class="max-w-3xl mx-auto">
+                <div class="rounded-lg bg-white p-8 shadow-lg border border-gray-100">
+                    <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8 text-center">Edit Profile</h1>
+                    <form method="post"
+                          enctype="multipart/form-data"
+                          class="grid grid-cols-6 gap-6">
+                        {% csrf_token %}
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.email.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Email</label>
+                            {% render_field form.email placeholder="example@domain.com" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.username.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Username</label>
+                            {% render_field form.username placeholder="Username" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.first_name.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">First Name</label>
+                            {% render_field form.first_name placeholder="John" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.last_name.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Last Name</label>
+                            {% render_field form.last_name placeholder="Doe" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.phone.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Address</label>
+                            {% render_field form.address placeholder="+1234567890" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.address.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">City</label>
+                            {% render_field form.city placeholder="123 Main St" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.zip.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Countr</label>
+                            {% render_field form.country placeholder="+1234567890" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="{{ form.address.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Zipcode</label>
+                            {% render_field form.zip placeholder="123 Main St" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6">
+                            <label for="{{ form.company_name.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Company Name</label>
+                            {% render_field form.company_name placeholder="Acme Inc." class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6">
+                            <label for="{{ form.about.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">About</label>
+                            {% render_field form.about placeholder="Tell us about yourself or your company" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" rows="10" %}
+                        </div>
+                        <div class="col-span-6">
+                            <label for="{{ form.website.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Website</label>
+                            {% render_field form.website placeholder="https://www.example.com" class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm placeholder-gray-300" %}
+                        </div>
+                        <div class="col-span-6">
+                            <label for="{{ form.logo.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700">Logo</label>
+                            {% render_field form.logo class="p-2 mt-1 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %}
+                        </div>
+                        <div class="col-span-6">
+                            <button type="submit"
+                                    class="w-full inline-block shrink-0 rounded-md border border-teal-600 bg-teal-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

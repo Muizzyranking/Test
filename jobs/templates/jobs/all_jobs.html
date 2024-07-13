@@ -1,0 +1,48 @@
+{% extends "users/base.html" %}
+{% load widget_tweaks %}
+{% block title %}All Jobs - Jobtrackr{% endblock title %}
+{% block nav %}
+  {% if user.is_authenticated %}
+    {% include "users/nav/feed-nav.html" %}
+  {% else %}
+    {% include "core/nav.html" %}
+  {% endif %}
+{% endblock nav %}
+{% block content %}
+  <div class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8 text-center">Available Jobs</h2>
+      <div class="space-y-6">
+        {% for job in jobs %}
+          <div class="rounded-lg bg-white p-6 shadow-sm hover:shadow-lg transition duration-300 border border-gray-100">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex-1">
+                <a href="{% url 'job' job.slug %}" class="block mb-2">
+                  <h3 class="text-2xl font-bold text-teal-600 hover:text-teal-700 transition duration-300">{{ job.title }}</h3>
+                </a>
+                <div class="flex items-center gap-4 mb-2 sm:mb-0">
+                  <img src="./../../../static/Lofi-Anime-Room-crop.png"
+                       alt="{{ job.company }}"
+                       class="w-12 h-12 rounded-full">
+                  <div>
+                    <a href="{% url 'company' job.company.company_name %}" class="text-sm text-gray-600 hover:text-teal-600 transition duration-300">
+                      {{ job.company.company_name }}
+                    </a>
+                    <p class="text-sm text-gray-500">Posted on {{ job.created_at|date:"M d, Y" }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 sm:mt-0">
+                <a href="{% url 'job' job.slug %}"
+                   class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition duration-300">
+                  View Details
+                </a>
+              </div>
+            </div>
+            <p class="mt-4 text-base text-gray-500">{{ job.description|truncatewords:30 }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
